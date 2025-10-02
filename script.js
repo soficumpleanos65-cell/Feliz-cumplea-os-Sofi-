@@ -1,59 +1,47 @@
-/* ---------------- confeti ---------------- */
-const canvas = document.getElementById('confetiCanvas');
-const ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
-if (canvas && ctx) {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-let confetis = [];
-function Confeti(){
-  this.x = Math.random() * (canvas.width || 1);
-  this.y = (Math.random() * (canvas.height || 1)) - (canvas.height || 1);
-  this.size = Math.random() * 8 + 4;
-  this.speed = Math.random() * 3 + 2;
-  this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-}
-function dibujarConfeti(){
-  if (!ctx) return;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  confetis.forEach((c,i)=>{
-    ctx.beginPath();
-    ctx.arc(c.x, c.y, c.size, 0, Math.PI*2);
-    ctx.fillStyle = c.color;
-    ctx.fill();
-    c.y += c.speed;
-    if (c.y > canvas.height + 20) confetis.splice(i,1);
-  });
-  requestAnimationFrame(dibujarConfeti);
-}
-dibujarConfeti();
+const cards = document.querySelectorAll(".card");
+let currentVideo = null;
 
-document.getElementById('confetiBtn').addEventListener('click', () => {
-  for (let i=0;i<250;i++) confetis.push(new Confeti());
-});
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+    // Cerrar otros abiertos
+    cards.forEach(c => {
+      if (c !== card) {
+        c.classList.remove("flipped");
+        const v = c.querySelector("video");
+        if (v) v.pause();
+      }
+    });
 
-/* Ajustar canvas al redimensionar */
-window.addEventListener('resize', () => {
-  if (!canvas) return;
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
+    card.classList.toggle("flipped");
 
-/* --------------- Flip cards --------------- */
-/* Carta principal */
-const mainCard = document.querySelector('.main-card');
-if (mainCard) {
-  mainCard.addEventListener('click', () => {
-    mainCard.classList.toggle('flipped');
-  });
-}
+    const back = card.querySelector(".card-back");
 
-/* Recuerdos */
-document.querySelectorAll('.memory-card').forEach(mem => {
-  mem.addEventListener('click', (e) => {
-    mem.classList.toggle('flipped');
+    if (!back.hasChildNodes()) {
+      const type = card.dataset.type;
+      const src = card.dataset.src;
+
+      if (type === "image") {
+        const img = document.createElement("img");
+        img.src = src;
+        back.appendChild(img);
+      } else if (type === "video") {
+        const video = document.createElement("video");
+        video.src = src;
+        video.controls = true;
+        back.appendChild(video);
+        video.play();
+        currentVideo = video;
+      }
+    } else {
+      // Si ya tiene un video dentro
+      const v = back.querySelector("video");
+      if (v) {
+        if (card.classList.contains("flipped")) {
+          v.play();
+        } else {
+          v.pause();
+        }
+      }
+    }
   });
 });
-
-/* debug: confirma que todo listener existe (por consola) */
-console.log('Listeners: main-card', !!mainCard, 'memories:', document.querySelectorAll('.memory-card').length);
