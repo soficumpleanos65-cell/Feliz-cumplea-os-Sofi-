@@ -126,4 +126,18 @@ body {
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
-  }
+}
+
+.memories-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  justify-items: center;
+}
+
+.memory-card {
+  width: 130px;
+  height: 180px;
+}
