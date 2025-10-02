@@ -20,6 +20,7 @@ body {
 .card {
   perspective: 1000px;
   width: 100%;
+  height:100%
   /* Altura mínima para la barra, el estado 'flipped' la expandirá */
   min-height: 80px;
   transition: min-height 0.8s; /* Animación de expansión de altura */
