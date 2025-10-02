@@ -21,10 +21,10 @@ body {
 .card {
   perspective: 1000px;
   width: 100%;   /* todas del mismo ancho */
-  /* min-height eliminado para que se ajuste a la barra */
+  /* min-height eliminado para que se ajuste al contenido de la barra */
 }
 
-/* *** MODIFICACIÓN CLAVE 2: Ajuste del Contenedor Interno *** */
+/* *** AJUSTE 1: Contenedor Interno para permitir el ajuste de altura *** */
 .card-inner {
   position: relative;
   width: 100%;
@@ -40,7 +40,7 @@ body {
   transform: rotateY(180deg);
 }
 
-/* *** MODIFICACIÓN CLAVE 1: Eliminamos la posición absoluta y la altura forzada *** */
+/* *** AJUSTE 2: Eliminamos la posición y altura forzada para adaptarnos al contenido *** */
 .card-front, .card-back {
   /* position: absolute; y height: 100%; eliminados para que se adapten al contenido */
   width: 100%;
@@ -62,13 +62,26 @@ body {
 
 .card-back {
   background: white;
-  transform: rotateY(180deg);
+  /* transform: rotateY(180deg); se manejará por separado para el giro */
   overflow: hidden;
 }
 
+/* *** AJUSTE 3: La cara trasera debe ocupar el espacio para voltear correctamente *** */
+.card:not(.main-card) .card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transform: rotateY(180deg);
+}
+
+
+/* *** AJUSTE 4: Las imágenes se ven completas (sin recorte) *** */
 .card-back img, .card-back video {
   width: 100%;
-  height: auto;
+  height: 100%; /* Ocupa la altura del contenedor trasero */
+  object-fit: contain; /* ¡Clave! Muestra la imagen completa sin recortarla */
   border-radius: 15px;
 }
 
@@ -91,21 +104,15 @@ body {
   max-height: 700px; /* más grande para mostrar casi todo el texto */
 }
 
+.main-card .card-back {
+    transform: rotateY(180deg);
+}
+
 /* ------------------------------------------------------------------ */
-/* SOLUCIÓN FINAL: Control de la Altura de las Barras 'Recuerdo X' */
+/* SOLUCIÓN: Altura de las Barras 'Recuerdo X' (Grosor Visual) */
 /* ------------------------------------------------------------------ */
 /* Aseguramos el grosor de la barra rosada con padding */
 .card:not(.main-card) .card-front {
   padding: 30px 20px; 
   font-size: 1.5em;
-}
-
-/* Las caras traseras deben ocupar todo el espacio de la imagen/video */
-.card:not(.main-card) .card-back {
-  /* Para que la cara de atrás sea visible y ocupe el espacio */
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
 }
