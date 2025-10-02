@@ -54,3 +54,13 @@ document.querySelectorAll(".memory-card").forEach(mem => {
     mem.classList.toggle("flipped");
   });
 });
+function mostrarImagen(num) {
+  const modal = document.getElementById("modal");
+  const imgModal = document.getElementById("imgModal");
+  modal.style.display = "block";
+  imgModal.src = num + ".jpg"; // tus imágenes deben llamarse 1.jpg, 2.jpg ... 14.jpg
+}
+
+function cerrarModal() {
+  document.getElementById("modal").style.display = "none";
+}
