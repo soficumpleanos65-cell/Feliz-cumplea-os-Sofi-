@@ -1,40 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cumpleaños Sofi 🎂</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Carta para Sofi — Recuerdos</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="card principal">
-    <h1>💌 De un amigo para Sofi 💌</h1>
-    <p>❤️</p>
-  </div>
+  <main class="wrap">
+    <!-- Carta principal -->
+    <section class="main-card card">
+      <div class="card-inner">
+        <div class="card-front">
+          <h2>💌 De un amigo para Sofi 💌</h2>
+          <div class="heart">❤️</div>
+          <div class="hint">Toca la tarjeta para abrir la carta</div>
+        </div>
+        <div class="card-back">
+          <h1>🎉 ¡Feliz Cumpleaños Sofi! 🎂</h1>
+          <p>
+            Hoy celebramos no solo tu cumpleaños, sino la dicha de tener una amiga tan especial como tú.
+            Gracias por cada momento, por las risas, los consejos y por ser siempre auténtica. 💕
+            Que este año esté lleno de alegría, amor y sueños cumplidos. 🌸✨
+          </p>
+        </div>
+      </div>
+    </section>
 
-  <div class="contenedor">
-    <div class="card" onclick="mostrarImagen(1)">🌸 Recuerdo 1</div>
-    <div class="card" onclick="mostrarImagen(2)">💖 Recuerdo 2</div>
-    <div class="card" onclick="mostrarImagen(3)">✨ Recuerdo 3</div>
-    <div class="card" onclick="mostrarImagen(4)">🎉 Recuerdo 4</div>
-    <div class="card" onclick="mostrarImagen(5)">🌹 Recuerdo 5</div>
-    <div class="card" onclick="mostrarImagen(6)">⭐ Recuerdo 6</div>
-    <div class="card" onclick="mostrarImagen(7)">🌙 Recuerdo 7</div>
-    <div class="card" onclick="mostrarImagen(8)">🎂 Recuerdo 8</div>
-    <div class="card" onclick="mostrarImagen(9)">🎁 Recuerdo 9</div>
-    <div class="card" onclick="mostrarImagen(10)">☀️ Recuerdo 10</div>
-    <div class="card" onclick="mostrarImagen(11)">🍀 Recuerdo 11</div>
-    <div class="card" onclick="mostrarImagen(12)">👯 Recuerdo 12</div>
-    <div class="card" onclick="mostrarImagen(13)">🔥 Recuerdo 13</div>
-    <div class="card" onclick="mostrarImagen(14)">🌈 Recuerdo 14</div>
-  </div>
+    <!-- Botón de confeti (opcional) -->
+    <div class="confeti-wrap">
+      <button id="confetiBtn">Lanzar confeti 🎊</button>
+    </div>
 
-  <!-- Modal para mostrar imágenes -->
-  <div id="modal" class="modal" onclick="cerrarModal()">
-    <span class="cerrar">&times;</span>
-    <img class="modal-contenido" id="imgModal">
-  </div>
+    <!-- Galería de recuerdos (14 tarjetas) -->
+    <section class="memories">
+      <!-- Generé 14 tarjetas; cada imagen se llama imagenesX.jpg -->
+      <!-- Tarjeta ejemplo (1) -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">🌸<span>Recuerdo 1</span></div>
+          <div class="mem-back"><img src="imagenes1.jpg" alt="Recuerdo 1"></div>
+        </div>
+      </div>
 
+      <!-- 2 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">💖<span>Recuerdo 2</span></div>
+          <div class="mem-back"><img src="imagenes2.jpg" alt="Recuerdo 2"></div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">✨<span>Recuerdo 3</span></div>
+          <div class="mem-back"><img src="imagenes3.jpg" alt="Recuerdo 3"></div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">🎉<span>Recuerdo 4</span></div>
+          <div class="mem-back"><img src="imagenes4.jpg" alt="Recuerdo 4"></div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">🌹<span>Recuerdo 5</span></div>
+          <div class="mem-back"><img src="imagenes5.jpg" alt="Recuerdo 5"></div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">⭐<span>Recuerdo 6</span></div>
+          <div class="mem-back"><img src="imagenes6.jpg" alt="Recuerdo 6"></div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">🌙<span>Recuerdo 7</span></div>
+          <div class="mem-back"><img src="imagenes7.jpg" alt="Recuerdo 7"></div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">🎂<span>Recuerdo 8</span></div>
+          <div class="mem-back"><img src="imagenes8.jpg" alt="Recuerdo 8"></div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">🎁<span>Recuerdo 9</span></div>
+          <div class="mem-back"><img src="imagenes9.jpg" alt="Recuerdo 9"></div>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">☀️<span>Recuerdo 10</span></div>
+          <div class="mem-back"><img src="imagenes10.jpg" alt="Recuerdo 10"></div>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">🍀<span>Recuerdo 11</span></div>
+          <div class="mem-back"><img src="imagenes11.jpg" alt="Recuerdo 11"></div>
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">👯<span>Recuerdo 12</span></div>
+          <div class="mem-back"><img src="imagenes12.jpg" alt="Recuerdo 12"></div>
+        </div>
+      </div>
+
+      <!-- 13 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">🔥<span>Recuerdo 13</span></div>
+          <div class="mem-back"><img src="imagenes13.jpg" alt="Recuerdo 13"></div>
+        </div>
+      </div>
+
+      <!-- 14 -->
+      <div class="memory-card">
+        <div class="memory-inner">
+          <div class="mem-front">🌈<span>Recuerdo 14</span></div>
+          <div class="mem-back"><img src="imagenes14.jpg" alt="Recuerdo 14"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <canvas id="confetiCanvas"></canvas>
   <script src="script.js"></script>
 </body>
 </html>
