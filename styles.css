@@ -93,16 +93,17 @@ body {
 .card {
   perspective: 1000px;
   width: 100%;
-  min-height: 500px; /* en vez de 300px */
+  /* *** AJUSTE CLAVE 1: Reducimos la altura mínima para que las barras se acerquen *** */
+  min-height: 120px; 
 }
 
 /* ------------------------------------------------------------------ */
-/* SOLUCIÓN PARA HACER LOS CONTENEDORES 'RECUERDO X' MÁS ALTOS/GRUESOS */
+/* SOLUCIÓN FINAL PARA EL PROBLEMA DE ALTURA DE LAS BARRAS 'RECUERDO X' */
 /* ------------------------------------------------------------------ */
 .card:not(.main-card) .card-front {
-  /* Aumentamos el padding vertical (arriba y abajo) a 30px */
+  /* *** AJUSTE CLAVE 2: Mantenemos el padding alto para darle grosor a la barra *** */
   padding: 30px 20px; 
   
-  /* Opcional: Aumentar la fuente para que el texto sea más visible */
+  /* Hacemos la fuente un poco más grande */
   font-size: 1.5em;
 }
