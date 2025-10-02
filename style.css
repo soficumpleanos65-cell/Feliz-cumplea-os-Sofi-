@@ -6,186 +6,83 @@
   --bg1: #ffe6f0;
   --bg-gradient1: #ffe6f0;
   --bg-gradient2: #f3e8ff;
-}
-
-*{box-sizing: border-box}
-body{
-  margin:0;
-  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-  background: linear-gradient(180deg, #ffeef8 0%, #f3e8ff 100%);
-  color:#333;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-
-/* Contenedor principal */
-.wrap{
-  max-width: 980px;
-  margin: 28px auto;
-  padding: 0 16px 60px;
+}body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #f9c5d1, #fad0c4);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 22px;
+  min-height: 100vh;
+  margin: 0;
 }
 
-/* ---------- Carta principal ---------- */
-.main-card {
-  width: 320px;
-  height: 420px;
-  perspective: 1200px;
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  max-width: 1100px;
+  padding: 20px;
+}
+
+.card {
+  perspective: 1000px;
 }
 
 .card-inner {
-  width:100%;
-  height:100%;
-  position:relative;
-  transition: transform 0.75s cubic-bezier(.2,.9,.3,1);
+  position: relative;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  transition: transform 0.8s;
   transform-style: preserve-3d;
   cursor: pointer;
 }
 
-.main-card.flipped .card-inner {
+.card.flipped .card-inner {
   transform: rotateY(180deg);
 }
 
-.card-front,
-.card-back {
-  position:absolute;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  border-radius: 18px;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
   backface-visibility: hidden;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding: 24px;
-  text-align:center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
-/* frente */
 .card-front {
-  background: linear-gradient(180deg, #fff5fa 0%, #ffeef8 100%);
-  color: var(--accent);
-  font-weight:700;
-  font-size:1.1rem;
-}
-.card-front .heart{
-  font-size:48px;
-  margin:18px 0;
-}
-.card-front .hint{
-  margin-top:10px;
-  font-size:0.9rem;
-  color: #b2456a;
+  background: #fff0f5;
+  color: #e91e63;
+  font-weight: bold;
 }
 
-/* reverso */
 .card-back {
+  background: white;
   transform: rotateY(180deg);
-  background: #fff;
-  color: #333;
-  font-weight: 500;
-  line-height:1.5;
-  padding: 26px;
+  overflow: hidden;
 }
 
-/* --------- Botón confeti --------- */
-.confeti-wrap {
-  margin-top: -8px;
-}
-#confetiBtn{
-  border: none;
-  background: linear-gradient(90deg,#ff8ab8,#ff5ea0);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 22px;
-  cursor:pointer;
-  box-shadow: 0 6px 18px rgba(214,51,132,0.15);
-  font-weight:600;
-}
-
-/* ---------- Memorias (grid) ---------- */
-.memories{
-  width:100%;
-  max-width:900px;
-  display:grid;
-  /* responsive: adapta columnas */
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 18px;
-  align-items: start;
-  justify-items: center;
-  padding-top: 8px;
-}
-
-/* tarjeta de memoria */
-.memory-card{
-  width: 120px;
-  height: 160px;
-  perspective: 900px;
-}
-
-.memory-inner{
-  width:100%;
-  height:100%;
-  position:relative;
-  transition: transform 0.7s cubic-bezier(.2,.9,.3,1);
-  transform-style: preserve-3d;
-  cursor: pointer;
-}
-
-.memory-card.flipped .memory-inner {
-  transform: rotateY(180deg);
-}
-
-/* frente (emoji + texto) */
-.mem-front,
-.mem-back{
-  position:absolute;
-  left:0; top:0;
-  width:100%; height:100%;
-  border-radius: 12px;
-  backface-visibility: hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-  padding: 8px;
-  font-weight:700;
-  color: var(--accent);
-  background: linear-gradient(180deg, #fff5fa 0%, #fff0f6 100%);
-}
-
-/* detalle del texto */
-.mem-front span{
-  display:block;
-  margin-top:6px;
-  font-size:0.9rem;
-  color:#b22f62;
-}
-
-/* reverso con imagen */
-.mem-back{
-  transform: rotateY(180deg);
-  background: #ffffff;
-  padding: 0;
-}
-.mem-back img{
-  width:100%;
-  height:100%;
+.card-back img, .card-back video {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
-  display:block;
+  border-radius: 15px;
 }
 
-/* -------- Responsive tweaks -------- */
-@media (max-width:480px){
-  .main-card { width: 260px; height: 360px; }
-  .card-front h2 { font-size: 1rem; }
-  .memories { gap: 12px; grid-template-columns: repeat(3, 1fr); }
-  .memory-card { width: 100px; height:140px; }
-  }
+.title-card h2 {
+  font-size: 1.3em;
+  margin: 0;
+}
+
+.text-card {
+  font-size: 0.9em;
+  padding: 15px;
+  color: #333;
+  text-align: justify;
+  line-height: 1.4em;
+}
