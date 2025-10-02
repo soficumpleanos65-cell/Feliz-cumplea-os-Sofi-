@@ -3,7 +3,7 @@ body {
   background: linear-gradient(to bottom right, #f9c5d1, #fad0c4);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* CORRECCIÓN: Alinea el contenido desde arriba */
   min-height: 100vh;
   margin: 0;
 }
@@ -12,11 +12,9 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 15px;
-  /* *** SOLUCIÓN: Usar 95% de ancho para crear margen a los lados *** */
   width: 95%;
   max-width: 1100px;
   padding: 20px;
-  /* CLAVE: Asegura que el padding interno no empuje el contenido fuera del 95% del ancho */
   box-sizing: border-box;
 }
 
@@ -67,8 +65,6 @@ body {
 .card-back img, .card-back video {
   width: 100%;
   height: 100%;
-  /* Utiliza 'cover' si quieres que la imagen llene el espacio (aceptando recortes) */
-  /* Utiliza 'contain' si quieres ver la imagen completa (aceptando barras blancas) */
   object-fit: cover; 
   border-radius: 15px;
 }
@@ -89,7 +85,6 @@ body {
   padding: 20px;
   font-size: 1.2em;
   line-height: 1.6em;
-  /* Asegura que el padding no afecte la posición absoluta */
   box-sizing: border-box; 
 }
 
@@ -103,6 +98,6 @@ body {
   padding: 20px;
   text-align: justify;
   line-height: 1.6em;
-  overflow-y: auto;   /* si es muy largo, le aparece scroll */
-  max-height: 600px;  /* no se desborda la página */
+  overflow-y: auto;
+  max-height: 600px;
 }
