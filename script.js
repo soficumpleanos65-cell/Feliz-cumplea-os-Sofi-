@@ -40,3 +40,17 @@ window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+
+// Para voltear la carta principal
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () => {
+    card.classList.toggle("flipped");
+  });
+});
+
+// Para voltear cada recuerdo
+document.querySelectorAll(".memory-card").forEach(mem => {
+  mem.addEventListener("click", () => {
+    mem.classList.toggle("flipped");
+  });
+});
