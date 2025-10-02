@@ -72,19 +72,26 @@ body {
 
 /* Carta principal más grande */
 .main-card {
-  min-height: 500px; /* más alta para mostrar bien el texto */
+  min-height: 700px; /* aumenta el alto */
 }
 
 .main-card .card-front h2 {
-  font-size: 2.2em;
-  margin: 0 0 15px 0;
+  font-size: 2.5em;
+  margin: 0 0 20px 0;
 }
 
 .main-card .text-card {
-  font-size: 1.1em;
-  padding: 20px;
+  font-size: 1.2em;
+  padding: 25px;
   text-align: justify;
-  line-height: 1.7em;
+  line-height: 1.8em;
   overflow-y: auto;
-  max-height: 600px; /* deja ver más contenido antes del scroll */
+  max-height: 700px; /* más grande para mostrar casi todo el texto */
+}
+
+/* Cartas normales (imágenes y videos) más altas */
+.card {
+  perspective: 1000px;
+  width: 100%;
+  min-height: 500px; /* en vez de 300px */
 }
