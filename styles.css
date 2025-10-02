@@ -10,10 +10,10 @@ body {
 
 .container {
   display: flex;
-  flex-direction: column; /* cartas una debajo de otra */
+  flex-direction: column;
   gap: 30px;
-  width: 90%;       /* ancho relativo a la pantalla */
-  max-width: 900px; /* límite para que se vea elegante */
+  width: 90%;
+  max-width: 900px;
   padding: 20px;
 }
 
@@ -21,13 +21,21 @@ body {
 .card {
   perspective: 1000px;
   width: 100%;
-  min-height: 80px; /* Altura mínima para las barras no principales, se ajustará al voltear */
+  /* Altura mínima para la barra, el estado 'flipped' la expandirá */
+  min-height: 80px;
+  transition: min-height 0.8s; /* Animación de expansión de altura */
+}
+
+/* *** CLAVE: Expandir la tarjeta solo cuando está volteada *** */
+.card.flipped:not(.main-card) {
+  /* Establece la altura ideal para ver una imagen o video cómodamente */
+  min-height: 400px; 
 }
 
 .card-inner {
   position: relative;
   width: 100%;
-  height: 100%; /* Asegura que el inner ocupe toda la altura de .card */
+  height: 100%; /* Ocupa el 100% de la altura de .card */
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
@@ -39,7 +47,11 @@ body {
 }
 
 .card-front, .card-back {
+  position: absolute; /* Vuelve a Absolute para que el volteo 3D funcione */
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
   border-radius: 15px;
   backface-visibility: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -58,37 +70,26 @@ body {
 
 .card-back {
   background: white;
-  overflow: hidden; /* Asegura que la imagen no se desborde del card-back */
-}
-
-/* Las caras traseras deben estar posicionadas absolutamente para la animación de volteo */
-/* Y deben ocupar el 100% del card-inner */
-.card-front {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%; /* La cara frontal debe ocupar toda la altura del inner */
-}
-.card-back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%; /* La cara trasera también */
   transform: rotateY(180deg);
+  overflow: hidden;
+  /* El padding se retira de aquí para dar más espacio a la imagen */
+  padding: 0; 
 }
 
-
-/* *** AJUSTE PARA IMÁGENES: Que se vean completas *** */
+/* *** AJUSTE FINAL: La imagen se ve completa y grande *** */
 .card-back img, .card-back video {
   width: 100%;
-  height: 100%; /* Asegura que la imagen intente ocupar todo el espacio */
-  object-fit: contain; /* ¡CLAVE! Muestra la imagen completa, sin recortes */
+  height: 100%;
+  object-fit: contain; /* Muestra la imagen COMPLETA sin recorte */
   border-radius: 15px;
+  /* Añadimos padding aquí para que la imagen no se pegue a los bordes */
+  padding: 20px; 
+  box-sizing: border-box; /* Incluye el padding dentro del 100% */
 }
 
-/* Carta principal más grande */
+/* Carta principal (se mantiene igual) */
 .main-card {
-  min-height: 700px; /* mantiene el alto de la carta principal */
+  min-height: 700px;
 }
 
 .main-card .card-front h2 {
@@ -102,29 +103,22 @@ body {
   text-align: justify;
   line-height: 1.8em;
   overflow-y: auto;
-  max-height: 700px; /* más grande para mostrar casi todo el texto */
+  max-height: 700px;
 }
 
 /* ------------------------------------------------------------------ */
-/* SOLUCIÓN: Altura de las Barras 'Recuerdo X' (Grosor Visual) */
+/* SOLUCIÓN: Grosor de las Barras 'Recuerdo X' (Estado Cerrado) */
 /* ------------------------------------------------------------------ */
-/* Aseguramos el grosor de la barra rosada con padding */
 .card:not(.main-card) .card-front {
+  /* Controla el grosor de la barra cuando está cerrada */
   padding: 30px 20px; 
   font-size: 1.5em;
-  height: auto; /* Permite que la barra frontal se ajuste a su contenido + padding */
-  position: relative; /* Importante para que no se superponga al card-back en estado inicial */
+  /* Permite que la barra se vea como una barra y no como un cuadro grande */
+  height: auto; 
+  position: relative; /* Ajuste para que solo tome el espacio necesario en el eje Z */
 }
 
-/* *** AJUSTE PARA LA ALTURA DEL CARD CUANDO LA IMAGEN ESTÁ VISIBLE *** */
-.card.flipped:not(.main-card) {
-    min-height: 250px; /* Puedes ajustar esta altura para las imágenes volteadas */
-    /* Puedes probar con un max-height: 400px; si quieres limitar el tamaño de las imágenes grandes */
-}
-
-/* Opcional: Centrar la imagen dentro del card-back para las tarjetas no principales */
-.card:not(.main-card) .card-back {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Para que la barra frontal vuelva a ser una barra cuando está cerrada */
+.card:not(.main-card) .card-inner {
+    height: auto;
 }
