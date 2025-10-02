@@ -1,12 +1,4 @@
-/* --------- Base --------- */
-:root{
-  --pink-1: #fff0f6;
-  --pink-2: #ffd6e7;
-  --accent: #d63384;
-  --bg1: #ffe6f0;
-  --bg-gradient1: #ffe6f0;
-  --bg-gradient2: #f3e8ff;
-}body {
+body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to bottom right, #f9c5d1, #fad0c4);
   display: flex;
@@ -24,6 +16,7 @@
   padding: 20px;
 }
 
+/* Cartas normales */
 .card {
   perspective: 1000px;
 }
@@ -74,22 +67,10 @@
   border-radius: 15px;
 }
 
-.title-card h2 {
-  font-size: 1.3em;
-  margin: 0;
-}
-
-.text-card {
-  font-size: 0.9em;
-  padding: 15px;
-  color: #333;
-  text-align: justify;
-  line-height: 1.4em;
-}
 /* Carta principal más grande */
 .main-card {
   grid-column: 1 / -1; /* ocupa todo el ancho del grid */
-  height: auto;       /* se adapta a su contenido */
+  height: auto;
 }
 
 .main-card .card-inner {
@@ -106,13 +87,14 @@
 
 .main-card .card-front h2 {
   font-size: 2em;
+  margin: 0;
 }
 
-.text-card {
+.main-card .text-card {
   font-size: 1em;
   padding: 20px;
   text-align: justify;
   line-height: 1.6em;
-  overflow-y: auto;   /* si el texto es muy largo, agrega scroll */
-  max-height: 600px;  /* altura máxima para que no se desborde */
+  overflow-y: auto;   /* si es muy largo, le aparece scroll */
+  max-height: 600px;  /* no se desborda la página */
 }
