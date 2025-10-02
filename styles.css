@@ -95,3 +95,14 @@ body {
   width: 100%;
   min-height: 500px; /* en vez de 300px */
 }
+
+/* ------------------------------------------------------------------ */
+/* SOLUCIÓN PARA HACER LOS CONTENEDORES 'RECUERDO X' MÁS ALTOS/GRUESOS */
+/* ------------------------------------------------------------------ */
+.card:not(.main-card) .card-front {
+  /* Aumentamos el padding vertical (arriba y abajo) a 30px */
+  padding: 30px 20px; 
+  
+  /* Opcional: Aumentar la fuente para que el texto sea más visible */
+  font-size: 1.5em;
+}
